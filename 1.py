@@ -83,7 +83,7 @@ while run:
             finish=True
             window.blit(loseL,(200,200))
             window.blit(loseL,(200,200))
-
+            window.blit(loseRes,(100,0)) 
         if ball.rect.x >win_w:
             finish=True
             window.blit(loseR,(200,200))
