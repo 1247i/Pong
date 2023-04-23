@@ -47,6 +47,10 @@ racket2=Player('racket1.jpg',920,200,500,150,10)
 ball=GameSprite('ball.png',300,200,50,150,10)
 speed_x=5
 speed_y=5
+font.init()
+font=font.SysFont('veranda',70)
+loseL=font.render('Player1,you fail! Try again!',True,(180,0,0))
+loseR=font.render('Player2,you fail! Try again!',True,(180,0,0))
 finish=False
 
 run = True
@@ -67,11 +71,14 @@ while run:
             speed_x *= -1
         if ball.rect.y > win_h -50 or ball.rect.y <0:
             speed_y *= -1
-
-        
         racket2.reset()
-        
-        ball.reset() 
+        ball.reset()
+        if ball.rect.x<0:
+            finish=True
+            window.blit(loseL,(200,200))
+        if ball.rect.x >win_w:
+            finish=True
+            window.blit(loseR,(200,200))    
         display.update() 
     time.delay(30)      
 
