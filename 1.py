@@ -48,9 +48,10 @@ ball=GameSprite('ball.png',300,200,50,150,10)
 speed_x=5
 speed_y=5
 font.init()
-font=font.SysFont('veranda',70)
+font=font.SysFont('veranda',40)
 loseL=font.render('Player1,you fail! Try again!',True,(180,0,0))
 loseR=font.render('Player2,you fail! Try again!',True,(180,0,0))
+loseRes=font.render('R to reset',True,(180,0,0))
 finish=False
 
 run = True
@@ -59,6 +60,11 @@ while run:
     for e in event.get():
         if e.type ==QUIT:
             run=False
+        if e.type ==KEYDOWN:
+            if e.key==K_r:
+                finish=False
+                ball.rect.x= 200
+                ball.rect.y=200
         
     if not finish:
         window.blit(background,(0,0))   
@@ -76,9 +82,12 @@ while run:
         if ball.rect.x<0:
             finish=True
             window.blit(loseL,(200,200))
+            window.blit(loseL,(200,200))
+
         if ball.rect.x >win_w:
             finish=True
-            window.blit(loseR,(200,200))    
+            window.blit(loseR,(200,200))
+            window.blit(loseRes,(100,0))    
         display.update() 
     time.delay(30)      
 
